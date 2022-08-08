@@ -91,3 +91,20 @@ S.containerSize // = "740px"
 
 > Colors are also computed even with functions like lighten()
 
+## Root vars
+
+Atomizer will only export root vars :
+```less
+@publicProperty: blue; // exported
+._test {
+  @_privateProperty: red; // not exported
+}
+```
+
+## Exports
+
+If your css-module already have exports, it will append variables to it.
+
+## Roadmap
+
+[ ] Made it works with types automatically ( exports .d.ts ?, typescript plugin ? )
