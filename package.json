@@ -1,0 +1,51 @@
+{
+  "name": "vite-plugin-atomizer",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/index.es2019.cjs",
+  "module": "./dist/index.es2022.mjs",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zouloux/vite-plugin-atomizer.git"
+  },
+  "dependencies": {
+    "@zouloux/ecma-core": "^0.2.0",
+    "@zouloux/files": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.2"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsbundle build",
+    "publish": "npm run clean && tsbundle publish"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "atomizer",
+    "variables",
+    "css",
+    "module",
+    "less",
+    "sass",
+    "scss"
+  ],
+  "author": "Alexis Bouhet - ZoulouX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zouloux/vite-plugin-atomizer/issues"
+  },
+  "homepage": "https://github.com/zouloux/vite-plugin-atomizer#readme",
+  "tsbundle" : {
+    "output" : "./dist",
+    "formats" : ["es2019.cjs", "es2022.mjs"],
+    "files" : [
+      {
+        "input" : "./src/vite-plugin-atomizer.ts"
+      }
+    ]
+  }
+}
