@@ -1,11 +1,11 @@
 {
   "name": "vite-plugin-atomizer",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "Export computed variables from less and sass css-modules automatically.",
   "type": "module",
-  "main": "./dist/index.es2019.cjs",
-  "module": "./dist/index.es2022.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/vite-plugin-atomizer.es2019.cjs",
+  "module": "./dist/vite-plugin-atomizer.es2022.mjs",
+  "types": "./dist/vite-plugin-atomizer.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zouloux/vite-plugin-atomizer.git"
@@ -39,12 +39,15 @@
     "url": "https://github.com/zouloux/vite-plugin-atomizer/issues"
   },
   "homepage": "https://github.com/zouloux/vite-plugin-atomizer#readme",
-  "tsbundle" : {
-    "output" : "./dist",
-    "formats" : ["es2019.cjs", "es2022.mjs"],
-    "files" : [
+  "tsbundle": {
+    "output": "./dist",
+    "formats": [
+      "es2019.cjs",
+      "es2022.mjs"
+    ],
+    "files": [
       {
-        "input" : "./src/vite-plugin-atomizer.ts"
+        "input": "./src/vite-plugin-atomizer.ts"
       }
     ]
   }
