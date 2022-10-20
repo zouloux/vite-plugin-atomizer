@@ -104,6 +104,8 @@ export function atomizer ( options:IAtomizerOptions ) {
 			root = path.resolve( process.cwd(), config.root )
 		},
 		async transform ( src, id ) {
+			// Remove parameters from id
+			id = id.split("?")[0]
 			// Catch files matching ones from glob options
 			if ( !await matchFile(id) ) return undefined;
 			// Get file extension and transform accordingly
