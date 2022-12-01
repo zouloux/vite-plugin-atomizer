@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-atomizer",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Export computed variables from less and sass css-modules automatically.",
   "type": "module",
   "main": "./dist/vite-plugin-atomizer.es2019.cjs",

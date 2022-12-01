@@ -1,0 +1,21 @@
+
+
+
+@rootVar: 42px;
+@computedVar: 42px * 8;
+@deepComputedVar: @rootVar * @computedVar / 5;
+@functionVar: lighten(rgba(255, 100, 12, .5), 50%);
+
+// Using BEM notation
+.Block {
+	//@_privateVar: "private";
+	color: red;
+}
+._element {
+	width: @rootVar;
+	&-modifier {
+		width: @computedVar;
+		//@otherPrivateVar: "private";
+	}
+}
+

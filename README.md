@@ -98,6 +98,9 @@ Atomizer will only export root vars :
 @publicProperty: blue; // exported
 ._test {
   @_privateProperty: red; // not exported
+  // Because :
+  // 1. It has indentation
+  // 2. It starts with an underscore
 }
 ```
 

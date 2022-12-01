@@ -3,10 +3,19 @@ import { FileFinder, File } from "@zouloux/files";
 import { trailing } from "@zouloux/ecma-core";
 
 interface IAtomizerOptions {
-	files: string[]
+	files					:string[]
+	// generateTypeDefinitions	:boolean
 }
 
-export function atomizer ( options:IAtomizerOptions ) {
+// FIXME : Check if vite.config.ts is happy with this ...
+interface IAtomizerPlugin {
+	name:string
+	enforce:'pre'
+	config ( config?, command? )
+	transform ( src?, id ?):Promise<any>
+}
+
+export function atomizer ( options:IAtomizerOptions ):IAtomizerPlugin {
 	// Default options
 	options = Object.assign({}, options)
 	if ( typeof options.files === "undefined" )
@@ -32,10 +41,12 @@ export function atomizer ( options:IAtomizerOptions ) {
 		const file = new File( filePath )
 		await file.load()
 		// Get each line and trim spaces
-		const trimmedLines = (file.content() as string).split("\n").map( l => l.trim() )
+		const trimmedLines = (file.content() as string).split("\n")//.map( l => l.trim() )
 		// Variables to export are the one starting with the variable marker
 		const variables = trimmedLines
 			.filter( l => l.indexOf( variableMarker ) === 0 )
+			// Skip private members ( starting with an underscore )
+			.filter( l => l.indexOf("_") !== 1 )
 			.map( line => (
 				// Split variable name and value
 				line.split(':', 2)
@@ -114,6 +125,11 @@ export function atomizer ( options:IAtomizerOptions ) {
 				return await transform( id, '@' );
 			else if ( extension === ".scss" || extension === ".sass" )
 				return await transform( id, '$' );
+			// Generate type definition
+			// if ( options.generateTypeDefinitions ) {
+			// 	console.log( '>', id );
+			// 	process.exit();
+			// }
 			// This file is not supported
 			else
 				throw new Error(`atomizer.transform // File type ${extension} not supported yet.`)
